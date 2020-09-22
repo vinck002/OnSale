@@ -34,10 +34,7 @@ namespace OnSale.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<DataContext>(cfg =>
-            {
-                cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+            services.AddDbContext<DataContext>(cfg => cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IBlobHelper, BlobHelper>();
             services.AddScoped<IConverterHelper, ConverterHelper>();
 
