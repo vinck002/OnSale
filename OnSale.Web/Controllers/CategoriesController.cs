@@ -47,7 +47,7 @@ namespace OnSale.Web.Controllers
 
                 if (model.ImageFile != null)
                 {
-                    imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "categories");
+                    imageId = await _blobhelper.UploadBlobAsync(model.ImageFile, "categories");
                 }
 
                 try
