@@ -36,6 +36,7 @@ namespace OnSale.Web
 
             services.AddDbContext<DataContext>(cfg => cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IBlobHelper, BlobHelper>();
+            services.AddScoped<ICombosHelper, CombosHelper>();
             services.AddScoped<IConverterHelper, ConverterHelper>();
 
             services.AddTransient<SeedDb>();
