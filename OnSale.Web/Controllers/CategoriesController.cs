@@ -61,7 +61,7 @@ namespace OnSale.Web.Controllers
                 {
                     if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "There are a record with the same name.");
+                        ModelState.AddModelError(string.Empty, "ya existe un registro con el mismo nombre.");
                     }
                     else
                     {
@@ -118,7 +118,7 @@ namespace OnSale.Web.Controllers
                 {
                     if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "There are a record with the same name.");
+                        ModelState.AddModelError(string.Empty, "ya existe un registro con el mismo nombre.");
                     }
                     else
                     {
