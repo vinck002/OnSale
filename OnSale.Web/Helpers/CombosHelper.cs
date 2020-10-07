@@ -29,7 +29,7 @@ namespace OnSale.Web.Helpers
 
             list.Insert(0, new SelectListItem
             {
-                Text = "[Select a category...]",
+                Text = "[Selecciona una categoria...]",
                 Value = "0"
             });
 
