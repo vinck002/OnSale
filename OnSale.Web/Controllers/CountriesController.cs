@@ -19,7 +19,6 @@ namespace OnSale.Web.Controllers
             _context = context;
         }
 
-        // GET: Countries
         public async Task<IActionResult> Index()
         {
             return View(await _context.Countries
@@ -34,7 +33,7 @@ namespace OnSale.Web.Controllers
                 return NotFound();
             }
 
-            var country = await _context.Countries
+            Country country = await _context.Countries
                 .Include(c => c.Departments)
                 .ThenInclude(d => d.Cities)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -46,15 +45,11 @@ namespace OnSale.Web.Controllers
             return View(country);
         }
 
-        // GET: Countries/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new Country());
         }
 
-        // POST: Countries/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Country country)
@@ -71,7 +66,7 @@ namespace OnSale.Web.Controllers
                 {
                     if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Hay un registro con el mismo Nombre.");
+                        ModelState.AddModelError(string.Empty, "There are a record with the same name.");
                     }
                     else
                     {
@@ -82,13 +77,11 @@ namespace OnSale.Web.Controllers
                 {
                     ModelState.AddModelError(string.Empty, exception.Message);
                 }
-
             }
-            ///
+
             return View(country);
         }
 
-        // GET: Countries/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,17 +89,15 @@ namespace OnSale.Web.Controllers
                 return NotFound();
             }
 
-            var country = await _context.Countries.FindAsync(id);
+            Country country = await _context.Countries.FindAsync(id);
             if (country == null)
             {
                 return NotFound();
             }
+
             return View(country);
         }
 
-        // POST: Countries/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Country country)
@@ -144,8 +135,6 @@ namespace OnSale.Web.Controllers
             return View(country);
         }
 
-
-        // GET: Countries/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -153,8 +142,8 @@ namespace OnSale.Web.Controllers
                 return NotFound();
             }
 
-            var country = await _context.Countries
-                .Include(d => d.Departments)
+            Country country = await _context.Countries
+                .Include(c => c.Departments)
                 .ThenInclude(d => d.Cities)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (country == null)
@@ -166,8 +155,6 @@ namespace OnSale.Web.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        // POST: Countries/Delete/5
 
         public async Task<IActionResult> AddDepartment(int? id)
         {
@@ -207,7 +194,6 @@ namespace OnSale.Web.Controllers
                     _context.Update(country);
                     await _context.SaveChangesAsync();
                     return RedirectToAction($"{nameof(Details)}/{country.Id}");
-
                 }
                 catch (DbUpdateException dbUpdateException)
                 {
@@ -228,6 +214,7 @@ namespace OnSale.Web.Controllers
 
             return View(department);
         }
+
         public async Task<IActionResult> EditDepartment(int? id)
         {
             if (id == null)
@@ -257,13 +244,12 @@ namespace OnSale.Web.Controllers
                     _context.Update(department);
                     await _context.SaveChangesAsync();
                     return RedirectToAction($"{nameof(Details)}/{department.IdCountry}");
-
                 }
                 catch (DbUpdateException dbUpdateException)
                 {
                     if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Ya existe un registro con el mismo nombre.");
+                        ModelState.AddModelError(string.Empty, "There are a record with the same name.");
                     }
                     else
                     {
@@ -298,7 +284,6 @@ namespace OnSale.Web.Controllers
             return View(department);
         }
 
-
         public async Task<IActionResult> DeleteDepartment(int? id)
         {
             if (id == null)
@@ -319,6 +304,7 @@ namespace OnSale.Web.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction($"{nameof(Details)}/{country.Id}");
         }
+
         public async Task<IActionResult> AddCity(int? id)
         {
             if (id == null)
@@ -428,6 +414,7 @@ namespace OnSale.Web.Controllers
             }
             return View(city);
         }
+
         public async Task<IActionResult> DeleteCity(int? id)
         {
             if (id == null)
@@ -447,6 +434,5 @@ namespace OnSale.Web.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction($"{nameof(DetailsDepartment)}/{department.Id}");
         }
-
     }
 }

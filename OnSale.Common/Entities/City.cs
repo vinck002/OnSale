@@ -8,13 +8,18 @@ namespace OnSale.Common.Entities
     {
         public int Id { get; set; }
 
-        [MaxLength(50, ErrorMessage = "El campo {0} debe contener menos de {1} caractereres.")]
+        [MaxLength(50)]
         [Required]
         public string Name { get; set; }
 
         [JsonIgnore]
         [NotMapped]
         public int IdDepartment { get; set; }
+
+        [JsonIgnore]
+        public Department Department { get; set; }
+
+
     }
 
 }

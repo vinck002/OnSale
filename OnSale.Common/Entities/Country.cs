@@ -11,21 +11,14 @@ namespace OnSale.Common.Entities
     {
         public int Id { get; set; }
 
-        [DisplayName("Nombre")]
-        [MaxLength(50, ErrorMessage = "El campo {0} debe contener menos de {1} caractereres.")]
+        [MaxLength(50, ErrorMessage = "The filed {0} must contain less than {1} characteres.")]
         [Required]
-         public String Name { get; set; }
+        [Display(Name = "Country")]
+        public string Name { get; set; }
 
-        [DisplayName("Provincias")]
         public ICollection<Department> Departments { get; set; }
 
-        [DisplayName("Cantidad de provincias")]
+        [DisplayName("Departments Number")]
         public int DepartmentsNumber => Departments == null ? 0 : Departments.Count;
-
-        [JsonIgnore]
-        [NotMapped]
-        public int IdCountry { get; set; }
-
-
     }
 }

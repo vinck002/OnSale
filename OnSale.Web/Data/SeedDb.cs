@@ -69,41 +69,7 @@ namespace OnSale.Web.Data
         {
             if (!_context.Countries.Any())
             {
-                _context.Countries.Add(new Country
-                {
-                    Name = "Colombia",
-                    Departments = new List<Department>
-                {
-                    new Department
-                    {
-                        Name = "Antioquia",
-                        Cities = new List<City>
-                        {
-                            new City { Name = "Medellín" },
-                            new City { Name = "Envigado" },
-                            new City { Name = "Itagüí" }
-                        }
-                    },
-                    new Department
-                    {
-                        Name = "Bogotá",
-                        Cities = new List<City>
-                        {
-                            new City { Name = "Bogotá" }
-                        }
-                    },
-                    new Department
-                    {
-                        Name = "Valle del Cauca",
-                        Cities = new List<City>
-                        {
-                            new City { Name = "Calí" },
-                            new City { Name = "Buenaventura" },
-                            new City { Name = "Palmira" }
-                        }
-                    }
-                }
-                });
+               
                 _context.Countries.Add(new Country
                 {
                     Name = "USA",
