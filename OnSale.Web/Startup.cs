@@ -40,6 +40,12 @@ namespace OnSale.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/NotAuthorized";
+                options.AccessDeniedPath = "/Account/NotAuthorized";
+            });
+
 
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
@@ -93,7 +99,7 @@ namespace OnSale.Web
             //    SupportedCultures = new[] { new CultureInfo("en-US") },
             //    SupportedUICultures = new[] { new CultureInfo("en-US") }
             //});
-
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
