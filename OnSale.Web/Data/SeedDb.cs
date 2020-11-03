@@ -61,6 +61,9 @@ namespace OnSale.Web.Data
 
                 await _userHelper.AddUserAsync(user, "123456");
                 await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+                string token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                await _userHelper.ConfirmEmailAsync(user, token);
+
             }
 
             return user;
@@ -72,26 +75,26 @@ namespace OnSale.Web.Data
                
                 _context.Countries.Add(new Country
                 {
-                    Name = "USA",
+                    Name = "Republica Dominicana",
                     Departments = new List<Department>
                 {
                     new Department
                     {
-                        Name = "California",
+                        Name = "Puerto Plata",
                         Cities = new List<City>
                         {
-                            new City { Name = "Los Angeles" },
-                            new City { Name = "San Diego" },
-                            new City { Name = "San Francisco" }
+                            new City { Name = "Los Ortegas" },
+                            new City { Name = "Villa Progreso" },
+                            new City { Name = "Los Dominguez" }
                         }
                     },
                     new Department
                     {
-                        Name = "Illinois",
+                        Name = "Santiago",
                         Cities = new List<City>
                         {
-                            new City { Name = "Chicago" },
-                            new City { Name = "Springfield" }
+                            new City { Name = "Monumental" },
+                            new City { Name = "Cien fuego" }
                         }
                     }
                 }
