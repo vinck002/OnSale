@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using OnSale.Common.Services;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -10,10 +11,13 @@ namespace Onsale.Prism.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        
+
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "Main Page";
+           
         }
     }
 }

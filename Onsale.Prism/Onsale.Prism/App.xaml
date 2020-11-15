@@ -5,7 +5,13 @@
              x:Class="Onsale.Prism.App">
   <Application.Resources>
 
-    <!-- Application resource dictionary -->
+        <ResourceDictionary>
 
-  </Application.Resources>
+            <!-- Parameters -->
+            <x:String x:Key="UrlAPI">https://onsaleweb20201106181131.azurewebsites.net</x:String>
+
+        </ResourceDictionary>
+
+
+    </Application.Resources>
 </prism:PrismApplication>
